@@ -65,7 +65,7 @@ public class Categories implements Serializable {
 		/* Bug Start #003 */
 
         public void setStrCategoryThumb(String strCategoryThumb) {
-            this.strCategoryThumb = strCategoryThumb:
+            this.strCategoryThumb = strCategoryThumb;
         }
 
         public Sring getStrCategoryDescription() {
