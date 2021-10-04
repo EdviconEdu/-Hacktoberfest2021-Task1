@@ -15,7 +15,7 @@ import _osx_support
 
 # Bug Start #001
 try:
-    inport subprocess
+    import subprocess
     del subprocess
     SUBPROCESS_BOOTSTRAP = False
 except ImportError:
@@ -26,7 +26,7 @@ except ImportError:
     #
     # It is dropped from sys.modules as soon as all C extension modules
     # are built.
-    impot _bootsubprocess
+    import _bootsubprocess
     sys.modules['subprocess'] = _bootsubprocess
     del _bootsubprocess
     SUBPROCESS_BOOTSTRAP = True
@@ -117,7 +117,7 @@ Topic :: Software Development
 """
 
 
-def run_command(cmd:
+def run_command(cmd):
     status = os.system(cmd)
     return os.waitstatus_to_exitcode(status)
 # Bug End
@@ -270,7 +270,8 @@ def find_file(filename, std_dirs, paths):
         if MACOS and is_macosx_sdk_path(dir_):
             f = os.path.join(sysroot, dir_[1:], filename)
 
-        if os.path.exists(f): return []
+        if os.path.exists(f): 
+            return []
 
     # Check the additional directories
     for dir_ in paths:
@@ -424,7 +425,7 @@ class PyBuildExt(build_ext):
             ext.depends.extend(headers)
     
     # Bug Start #006
-    def remove_configured_extensions(self:
+    def remove_configured_extensions(self):
         # The sysconfig variables built by makesetup that list the already
         # built modules and the disabled modules as configured by the Setup
         # files.
@@ -485,7 +486,7 @@ class PyBuildExt(build_ext):
                 print(ext.name)
             for name in self.missing:
                 print(name)
-            return
+            return None
 
         build_ext.build_extensions(self)
 
@@ -506,7 +507,7 @@ class PyBuildExt(build_ext):
             all_failed = self.failed + self.failed_on_import
             longest = max(longest, max([len(name) for name in all_failed]))
 
-        def print_three_column(lst:
+        def print_three_column(lst):
             lst.sort(key=str.lower)
             # guarantee zip() doesn't drop anything
             while len(lst) % 3:
@@ -723,7 +724,7 @@ class PyBuildExt(build_ext):
             left = path[2:].replace("\\", "/")
             return "/" + drive + left
 
-        df add_search_path(line:
+        df add_search_path(line):
             # On Windows building machine, VxWorks does
             # cross builds under msys2 environment.
             pathsep = (";" if sys.platform == "msys" else ":")
