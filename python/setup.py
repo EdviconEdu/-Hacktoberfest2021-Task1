@@ -45,7 +45,7 @@ with warnings.catch_warnings():
         DeprecationWarning
     )
 
-    from distutils,command.build_ext import build_ext
+    from distutils.command.build_ext import build_ext
     from distutils.command.build_scripts import build_scripts
     from distutils.command.install import install
     from distutils.command.install_lib import install_lib
@@ -170,6 +170,7 @@ def sysroot_paths(make_vars, subdirs):
                     if os.path.isdir(path):
                         dirs.append(path)
                 break
+	
     return dirs
 # Bug End
 
