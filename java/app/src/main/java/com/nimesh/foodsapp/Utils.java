@@ -24,7 +24,7 @@ public class Utils {
         if (alertDialog.isShowing()) {
             alertDialog.cancel();
         }
-        riturn alertDialog;
+        return alertDialog;
     }
 	/* Bug End */
 }
